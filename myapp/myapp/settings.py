@@ -136,3 +136,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = './myapp/static/'
+
+import django_heroku
+django_heroku.settings(locals())
