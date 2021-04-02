@@ -1,13 +1,4 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-from django_filters.rest_framework import DjangoFilterBackend
-from django.utils import timezone
 
 
 class BulletinIssues(models.Model):
@@ -143,8 +134,8 @@ class OrPodanieIssueDocuments(models.Model):
 
 
 class OrPodanieIssues(models.Model):
-    bulletin_issue = models.ForeignKey(BulletinIssues, models.CASCADE)
-    raw_issue = models.ForeignKey('RawIssues', models.CASCADE)
+    bulletin_issue = models.ForeignKey(BulletinIssues, models.CASCADE, default=7)
+    raw_issue = models.ForeignKey('RawIssues', models.CASCADE, default=637)
     br_mark = models.CharField(max_length=1000)
     br_court_code = models.CharField(max_length=1000)
     br_court_name = models.CharField(max_length=1000, blank=False, null=False)
@@ -227,3 +218,18 @@ class ZnizenieImaniaIssues(models.Model):
     class Meta:
         db_table = 'znizenie_imania_issues'
         unique_together = (('updated_at', 'id'),)
+
+
+class Companies(models.Model):
+    cin = models.BigIntegerField(primary_key=True)
+    name = models.CharField(max_length=1000, blank=True, null=True)
+    br_section = models.CharField(max_length=1000, blank=True, null=True)
+    address_line = models.CharField(max_length=1000, blank=True, null=True)
+    last_update = models.DateTimeField()
+    updated_at = models.DateTimeField()
+    created_at = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'companies'
+        ordering = ['-cin']

@@ -55,6 +55,7 @@ MIDDLEWARE = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
 }
 
@@ -83,15 +84,27 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'OPTIONS': {
+    #             'options': '-c search_path=ov,zadanie'
+    #         },
+    #         'NAME': 'slovensko',
+    #         'USER': 'tester',
+    #         'PASSWORD': 'YRgYxeD4UVGp',
+    #         'HOST': '147.175.150.216',
+    #         'PORT': '5432',
+    # }
+
     'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'OPTIONS': {
                 'options': '-c search_path=ov,zadanie'
             },
-            'NAME': 'zadanie',
-            'USER': 'xcizmarikl@fiit-dbs-xcizmarikl-db',
-            'PASSWORD': 'Databaza123',
-            'HOST': 'fiit-dbs-xcizmarikl-db.postgres.database.azure.com',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': 1234,
+            'HOST': 'localhost',
             'PORT': '5432',
     }
 }
